@@ -46,6 +46,7 @@ public class Main {
     }
     return animal;
   }
+  
   public static boolean isType(String animal, String[] type) {
     boolean isTrue = false;
     for (int j = 0; j < type.length; j++) {
@@ -64,8 +65,10 @@ public class Main {
     }
     if (!landAnimal) {
       airAnimal = isType(animal, airtype);
+      if(airAnimal) {
       AirType print = new AirType();
-    } else if (!airAnimal && !landAnimal) {
+      }
+    } else if (!airAnimal && !landAnimal) {   
       isType(animal, watertype);
       WaterType print = new WaterType();
     }

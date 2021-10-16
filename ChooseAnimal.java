@@ -20,8 +20,8 @@ public class ChooseAnimal {
         while (check){ 
             currentWord = sin.nextLine();
             for (int j = 0; j < 7; j++) {
-                if (currentWord.equals(animals[j]) && !currentWord.equals(animalsChosen[1])) {
-                    animalsChosen[j] = currentWord;
+                if (currentWord.equals(animals[j]) && !currentWord.equals(animalsChosen[0])) {
+                    animalsChosen[i] = currentWord;
                     correctWord = true;
                     i += 1;
                 }

@@ -1,8 +1,9 @@
 public class Main {
 
     public static void main(String[] args) {
-        String[] animalsChosen = new String[2];
-        ChooseAnimal.selectAnimal();
+        var selection = new ChooseAnimal();
+        String[] animals = selection.selectAnimal();
+        
         
     }
 }

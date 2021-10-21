@@ -8,8 +8,8 @@ public class Main implements ActionListener {
 
     private static JLabel label, label2, success1, success2;
     private static JFrame frame;
-    private static JPanel panel;
-    private static JButton button;
+    private static JPanel panel, game;
+    private static JButton button, button2;
     private static JTextField userText, secondAnimal;
     private static String user, user2;
     private static String[] animals = {
@@ -37,6 +37,7 @@ public class Main implements ActionListener {
         frame.setSize(1080, 720);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new JPanel();
+        
         frame.add(panel);
 
         panel.setLayout(null);
@@ -80,7 +81,7 @@ public class Main implements ActionListener {
         success2 = new JLabel("");
         success2.setBounds(280, 50, 300, 25);
         panel.add(success2);
-
+        frame.setSize(1080,720);
         frame.setVisible(true);
     }
 
@@ -103,36 +104,19 @@ public class Main implements ActionListener {
             }
         }
         if (firstInput && secondInput) {
+          panel.setVisible(false);
+          game = new JPanel();
+          game.setLayout(null);
+          frame.add(game);
 
-        } else {
-        }
+          button2 = new JButton("Test");
+          button2.setBounds(200,200,75,25);
+          button2.addActionListener(new Game());
+          game.add(button2);
+          game.setVisible(true);
+        } 
     }
-
-    public static String selectAnimal(String animal1) {
-
-        Scanner sin = new Scanner(System.in);
-        String animal = "";
-        boolean check = true, correctWord = false;
-        while (check) {
-            animal = sin.nextLine();
-            animal = animal.toLowerCase();
-            if (animal.equals("exit")) {
-                System.exit(0);
-            }
-            for (int i = 0; i < 7; i++) {
-                if (animal.equals(animals[i]) && !animal.equals(animal1)) {
-                    correctWord = true;
-                    check = false;
-                }
-            }
-            if (!correctWord) {
-                System.out.println("Incorrect input, please try again.");
-            }
-            correctWord = false;
-        }
-        return animal;
-    }
-
+   
     public static boolean isType(String animal, String[] type) {
         boolean isTrue = false;
         for (int j = 0; j < type.length; j++) {
@@ -162,6 +146,5 @@ public class Main implements ActionListener {
 
     public static void main(String[] args) {
         GUI();
-        System.out.println("test");
     }
 }

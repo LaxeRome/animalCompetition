@@ -1,4 +1,5 @@
 public class WaterType extends Animal {
+
     public double vision() {
     return 40;
   }

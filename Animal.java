@@ -1,11 +1,10 @@
-public abstract class Animal {
-  public abstract double vision();
-  
-  public abstract double speed();
+public interface Animal {
 
-  public abstract double defense();
+  public int speed();
 
-  public abstract double attack();
+  public double defense();
 
-  public abstract double stamina();
+  public double attack();
+
+  public double stamina();
 }

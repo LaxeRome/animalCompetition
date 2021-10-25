@@ -31,7 +31,7 @@ public class Main implements ActionListener {
   }, watertype = {
     "crocodile"
   };
-
+  // Creates the main window for the user to input the animals.
   public static void GUI() {
     frame = new JFrame();
     frame.setSize(1080, 720);
@@ -66,12 +66,12 @@ public class Main implements ActionListener {
     secondAnimal.setBackground(Color.gray);
     secondAnimal.setBounds(80, 50, 165, 25);
     panel.add(secondAnimal);
-
+    
     button = new JButton("Submit");
     button.setBounds(10, 80, 100, 25);
     button.addActionListener(new Main());
     panel.add(button);
-
+    // prints out all the animals that the user is able to select.
     String options = "Your choices include: ";
     for (int i = 0; i < animals.length; i++) {
       if (i < animals.length - 1) {
@@ -95,28 +95,30 @@ public class Main implements ActionListener {
     frame.setSize(1080, 720);
     frame.setVisible(true);
   }
-
+  
   @Override
   public void actionPerformed(ActionEvent e) {
-    user = userText.getText().toLowerCase();
-    user2 = secondAnimal.getText().toLowerCase();
-    success1.setText("");
+    user = userText.getText(); 
+    user2 = secondAnimal.getText();
     success1.setForeground(Color.lightGray);
     success2.setForeground(Color.lightGray);
-    success2.setText("");
     boolean firstInput = false;
     boolean secondInput = false;
+    // This for loop goes through the animals array to check if the animals input were
+    // valid.
     for (int j = 0; j < animals.length; j++) {
-      if (user.equals(animals[j])) {
-        success1.setText("correct animal type.");
+      if (user.equalsIgnoreCase(animals[j])) {
+        success1.setText("correct animal");
         firstInput = true;
       }
-      if (user2.equals(animals[j])) {
-        success2.setText("correct animal type.");
+      if (user2.equalsIgnoreCase(animals[j])) {
+        success2.setText("correct animal");
         secondInput = true;
       }
     }
+    // if true, it will hide the panel, and create a new panel that shows the results of the duel. It will then allow the user to play again if they click the "Back" button.
     if (firstInput && secondInput) {
+      // calls the duel method in the fight class.
       int winner = Fight.duel();
       panel.setVisible(false);
       game = new JPanel();
@@ -139,36 +141,6 @@ public class Main implements ActionListener {
       button2.addActionListener(new Game());
       game.add(button2);
       game.setVisible(true);
-
-      type(user);
-      type(user2);
-    }
-  }
-
-  public static boolean isType(String animal, String[] type) {
-    for (int k = 0; k < type.length; k++) {
-      if (animal.equals(type[k])) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  public static void type(String animal) {
-    boolean airAnimal = false;
-    boolean landAnimal = isType(animal, landtype);
-    if (landAnimal) {
-      new LandType();
-    }
-    if (!landAnimal) {
-      airAnimal = isType(animal, airtype);
-      if (airAnimal) {
-        new AirType();
-      }
-    } 
-    if (!airAnimal && !landAnimal) {
-      isType(animal, watertype);
-      new WaterType();
     }
   }
 

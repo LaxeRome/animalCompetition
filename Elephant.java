@@ -1,13 +1,13 @@
-public class Lion implements IDuelable {
+public class Elephant implements IDuelable {
     public int speed() {
-        return 6;
+        return 25;
     }
     public double defense() {
-        return 1;
+        return 1.5;
     }
 
     public double attack() {
-        return 150;
+        return 250;
     }
 
     public double stamina() {

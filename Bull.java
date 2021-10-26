@@ -1,18 +1,18 @@
-public class Bull implements Animal {
+public class Bull implements IDuelable {
 
     public int speed() {
-        return 2;
+        return 15;
     }
     public double defense() {
-        return 1000;
+        return 1;
     }
 
 
     public double attack() {
-        return 0.8;
+        return 125;
     }
 
     public double stamina() {
-      return 10;
+      return 1000;
     }
 }

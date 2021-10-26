@@ -1,18 +1,18 @@
 
-public class Bear implements Animal {
+public class Bear implements IDuelable {
   
     public int speed() {
-        return 2;
+        return 10;
     }
     public double defense() {
-        return 1000;
+        return 0.7;
     }
 
     public double attack() {
-        return 0.8;
+        return 125;
     }
 
     public double stamina() {
-      return 10;
+      return 1000;
     }
 }

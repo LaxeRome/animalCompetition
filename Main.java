@@ -19,17 +19,8 @@ public class Main implements ActionListener {
     "bear",
     "lion",
     "crocodile",
-    "hyena"
-  }, landtype = {
-    "snake",
-    "bull",
-    "bear",
-    "lion",
-    "hyena"
-  }, airtype = {
-    "hawk"
-  }, watertype = {
-    "crocodile"
+    "hyena",
+    "elephant"
   };
   // Creates the main window for the user to input the animals.
   public static void GUI() {
@@ -104,7 +95,7 @@ public class Main implements ActionListener {
     success2.setForeground(Color.lightGray);
     boolean firstInput = false;
     boolean secondInput = false;
-    // This for loop goes through the animals array to check if the animals input were
+    // This for loop goes through the animals array to check if the animals input were 
     // valid.
     for (int j = 0; j < animals.length; j++) {
       if (user.equalsIgnoreCase(animals[j])) {
@@ -116,10 +107,15 @@ public class Main implements ActionListener {
         secondInput = true;
       }
     }
-    // if true, it will hide the panel, and create a new panel that shows the results of the duel. It will then allow the user to play again if they click the "Back" button.
+    // if true, it will hide the panel, and create a new panel that shows the results of the
+    // duel. It will then allow the user to play again if they click the "Back" button.
     if (firstInput && secondInput) {
+      // Make the animals
+      IDuelable firstPlayer = getDuelable(user);
+      IDuelable secondPlayer = getDuelable(user2);
+
       // calls the duel method in the fight class.
-      int winner = Fight.duel();
+      int winner = Fight.duel(firstPlayer, secondPlayer);
       panel.setVisible(false);
       game = new JPanel();
       game.setLayout(null);
@@ -128,19 +124,54 @@ public class Main implements ActionListener {
       JLabel victory = new JLabel();
       victory.setBounds(100,100,350,40);
       victory.setFont(new Font(null, Font.BOLD, 20));
-
-      if(winner == 1) {
-        victory.setText("Player 1 has won!");
-      } else {
-        victory.setText("Player 2 has won!");
+      
+      switch(winner) {
+        case 1:
+         victory.setText("Player 1 has won!");
+         break;
+        case 2: 
+         victory.setText("Player 2 has won!");
+         break;
       }
       game.add(victory);
 
       button2 = new JButton("Back");
       button2.setBounds(200, 200, 75, 25);
-      button2.addActionListener(new Game());
+      button2.addActionListener(new Replay());
       game.add(button2);
       game.setVisible(true);
+    }
+  }
+
+  static final String HAWK = "hawk";
+  static final String SNAKE = "snake";
+  static final String BEAR = "bear";
+  static final String CROCODILE = "crocodile";
+  static final String LION = "lion";
+  static final String HYENA = "hyena";
+  static final String BULL = "bull";
+  static final String ELEPHANT = "elephant";
+
+  IDuelable getDuelable(String name) {
+    switch(name) {
+      case HAWK:
+       return new Hawk();
+      case SNAKE: 
+       return new Snake();
+      case BEAR:
+       return new Bear();
+      case CROCODILE: 
+       return new Crocodile();
+      case LION:  
+       return new Lion();
+      case HYENA: 
+       return new Hyena();
+      case BULL: 
+       return new Bull();
+      case ELEPHANT:
+       return new Elephant();
+      default: 
+       return null;
     }
   }
 

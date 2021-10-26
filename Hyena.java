@@ -1,17 +1,17 @@
-public class Hyena implements Animal {
+public class Hyena implements IDuelable {
 
     public int speed() {
-        return 2;
+        return 5;
     }
     public double defense() {
-        return 1000;
+        return 1;
     }
 
     public double attack() {
-        return 0.8;
+        return 100;
     }
 
     public double stamina() {
-      return 10;
+      return 1000;
     }
 }

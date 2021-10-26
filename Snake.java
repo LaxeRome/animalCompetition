@@ -1,14 +1,13 @@
-public class Snake implements Animal {
+public class Snake implements IDuelable {
     public int speed() {
-        return 2;
+        return 4;
     }
     public double defense() {
-        return 0.95;
+        return 1.5;
     }
 
-
     public double attack() {
-        return 50;
+        return 200;
     }
 
     public double stamina() {

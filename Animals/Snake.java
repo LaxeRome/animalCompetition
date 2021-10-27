@@ -1,3 +1,5 @@
+package Animals;
+
 public class Snake implements IDuelable {
     public int speed() {
         return 4;

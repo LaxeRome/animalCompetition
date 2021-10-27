@@ -1,14 +1,16 @@
-public class Hyena implements IDuelable {
+package Animals;
 
+public class Hawk implements IDuelable {
     public int speed() {
-        return 5;
+        return 2;
     }
     public double defense() {
-        return 1;
+        return 1.5;
     }
 
+
     public double attack() {
-        return 100;
+        return 75;
     }
 
     public double stamina() {

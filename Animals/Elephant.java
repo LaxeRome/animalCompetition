@@ -1,15 +1,15 @@
+package Animals;
 
-public class Bear implements IDuelable {
-  
+public class Elephant implements IDuelable {
     public int speed() {
-        return 10;
+        return 25;
     }
     public double defense() {
-        return 0.7;
+        return 1.5;
     }
 
     public double attack() {
-        return 125;
+        return 250;
     }
 
     public double stamina() {

@@ -1,3 +1,5 @@
+package Animals;
+
 public class Bull implements IDuelable {
 
     public int speed() {

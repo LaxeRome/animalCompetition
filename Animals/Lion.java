@@ -1,17 +1,17 @@
-public class Crocodile implements IDuelable {
+package Animals;
 
+public class Lion implements IDuelable {
     public int speed() {
-        return 4;
+        return 6;
     }
     public double defense() {
-        return 0.8;
+        return 1;
     }
 
-    
     public double attack() {
-        return 100;
+        return 150;
     }
-     
+
     public double stamina() {
       return 1000;
     }

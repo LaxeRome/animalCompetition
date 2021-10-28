@@ -7,7 +7,6 @@ import Animals.*;
 import Environments.*;
 
 public class Main implements ActionListener {
-
   private static JLabel label, label2, success1, success2;
   private static JFrame frame;
   private static JPanel panel, game;

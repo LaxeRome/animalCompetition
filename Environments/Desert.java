@@ -41,10 +41,4 @@ public class Desert extends Environment {
     }
     return newDefense;
   }
-  // this particular environment has no impact on 
-  // animal stamina.
-  public double adjustedStamina(String animal, double animalStamina) {
-    double newStamina = animalStamina;
-    return newStamina; 
-  }
 }

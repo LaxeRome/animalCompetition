@@ -1,18 +1,26 @@
 package Animals;
 
+import Environments.*;
+
 public class Lion implements IDuelable {
-    public int speed() {
-        return 6;
-    }
-    public double defense() {
-        return 1;
-    }
 
-    public double attack() {
-        return 150;
-    }
+  public String name() {
+    return "lion";
+  }
 
-    public double stamina() {
-      return 1000;
-    }
+  public int speed() {
+    return 6;
+  }
+  
+  public double defense() {
+    return 1;
+  }
+
+  public double attack() {
+    return 150;
+  }
+
+  public double stamina() {
+    return 1000;
+  }
 }

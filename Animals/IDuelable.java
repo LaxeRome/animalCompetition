@@ -1,5 +1,11 @@
+package Animals;
+
+import Environments.*;
+
 public interface IDuelable {
- // the best speed possible is 1, the lowest speed is the best speed.
+ 
+  public abstract String name();
+
   public int speed();
 
   public double defense();

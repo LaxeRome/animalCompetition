@@ -1,8 +1,10 @@
+import Animals.*;
+import Environments.*;
 // when called, it will take the users selected animals and either start a duel, truel, or skirmish.
 public class Fight {
   // the returned integer returns the value of the player that won. So if 1 is returned
   // player 1 has won. If 2 has returned player 2 has won.
-  public static int duel(IDuelable one, IDuelable two) {
+  public static int duel(IDuelable one, IDuelable two, Environment currentEnvironment) {
     boolean fighting = true;
     double stamina1 = one.stamina();
     System.out.println(stamina1);
@@ -12,8 +14,9 @@ public class Fight {
       // both of the animals variables are the same for now.
       while(fighting) {
         // Snake attacks first 
-        int random1 = (int)(Math.random() * one.speed()) + 1;
-        if(random1 > 1) {
+        int random1 = (int)(Math.random() * currentEnvironment.adjustedSpeed(one.speed()));
+        
+        if(random1 > 0) {
           // stamina is decreased based on the opposing animals attack attribute, and the defending animals defense attribute.
           stamina1 -= two.attack() * one.defense();
           System.out.println("Stamina 1: " + stamina1);
@@ -24,8 +27,8 @@ public class Fight {
           return 2;
         }
         // Hawk attacks.
-        int random2 = (int)(Math.random() * two.speed()) + 1;
-        if(random2 > 1) {
+        int random2 = (int)(Math.random() * two.speed());
+        if(random2 > 0) {
           stamina2 -= one.attack() * two.defense();
           System.out.println("Stamina 2: " + stamina2);
         }
@@ -36,11 +39,5 @@ public class Fight {
       }
       System.out.println(winner);
       return winner;
-  }
-  public static void truel() {
-
-  }
-  public static void skirmish() {
-
   }
 }

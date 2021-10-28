@@ -3,9 +3,10 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import Animals.*;
+import Environments.*;
 
 public class Main implements ActionListener {
-
   private static JLabel label, label2, success1, success2;
   private static JFrame frame;
   private static JPanel panel, game;
@@ -77,13 +78,26 @@ public class Main implements ActionListener {
 
     JLabel choices = new JLabel(options);
     choices.setForeground(Color.white);
-    choices.setBounds(10, 110, 500, 25);
+    choices.setBounds(10, 110, 700, 25);
     panel.add(choices);
 
     success2 = new JLabel("");
     success2.setBounds(280, 50, 300, 25);
     panel.add(success2);
     frame.setSize(1080, 720);
+
+    Environment currentEnvironment = getEnvironment();
+
+    JLabel environmentLabel = new JLabel("The current environment is " + currentEnvironment.environment() + "!!!");
+    environmentLabel.setFont(new Font(null, Font.BOLD, 22));
+    environmentLabel.setBounds(150,200,500,40);
+    if(currentEnvironment.environment().equals("desert")) {
+      environmentLabel.setForeground(new Color(225,220,177));
+    } else if(currentEnvironment.environment().equals("beach")) {
+      environmentLabel.setForeground(new Color (95, 170, 215));
+    }
+    panel.add(environmentLabel);
+
     frame.setVisible(true);
   }
   
@@ -151,7 +165,7 @@ public class Main implements ActionListener {
   static final String HYENA = "hyena";
   static final String BULL = "bull";
   static final String ELEPHANT = "elephant";
-
+  // calls the calss that the user has selected. 
   IDuelable getDuelable(String name) {
     switch(name) {
       case HAWK:
@@ -171,6 +185,18 @@ public class Main implements ActionListener {
       case ELEPHANT:
        return new Elephant();
       default: 
+       return null;
+    }
+  }
+// selects a random environment for the user to play in. 
+  static Environment getEnvironment() {
+    int random = (int)(Math.random() * 2);
+    switch(random) {
+      case 0:
+       return new Desert();
+      case 1:
+       return new Beach();
+      default:
        return null;
     }
   }

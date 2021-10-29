@@ -7,6 +7,7 @@ import Animals.*;
 import Environments.*;
 
 public class Main implements ActionListener {
+  static Environment currentEnvironment;
   private static JLabel label, label2, success1, success2;
   private static JFrame frame;
   private static JPanel panel, game;
@@ -26,7 +27,7 @@ public class Main implements ActionListener {
   // Creates the main window for the user to input the animals.
   public static void GUI() {
     frame = new JFrame();
-    frame.setSize(1080, 720);
+    frame.setSize(750, 300);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     panel = new JPanel();
     panel.setLayout(null);
@@ -84,9 +85,8 @@ public class Main implements ActionListener {
     success2 = new JLabel("");
     success2.setBounds(280, 50, 300, 25);
     panel.add(success2);
-    frame.setSize(1080, 720);
 
-    Environment currentEnvironment = getEnvironment();
+    currentEnvironment = getEnvironment();
 
     JLabel environmentLabel = new JLabel("The current environment is " + currentEnvironment.environment() + "!!!");
     environmentLabel.setFont(new Font(null, Font.BOLD, 22));
@@ -103,6 +103,12 @@ public class Main implements ActionListener {
   
   @Override
   public void actionPerformed(ActionEvent e) {
+    if(e.getSource()== button) {
+      submitAnimals();
+    } 
+  }
+
+  public static void submitAnimals() {
     user = userText.getText(); 
     user2 = secondAnimal.getText();
     success1.setForeground(Color.lightGray);
@@ -129,7 +135,7 @@ public class Main implements ActionListener {
       IDuelable secondPlayer = getDuelable(user2);
 
       // calls the duel method in the fight class.
-      int winner = Fight.duel(firstPlayer, secondPlayer);
+      int winner = Fight.duel(firstPlayer, secondPlayer, new Desert());
       panel.setVisible(false);
       game = new JPanel();
       game.setLayout(null);
@@ -166,7 +172,7 @@ public class Main implements ActionListener {
   static final String BULL = "bull";
   static final String ELEPHANT = "elephant";
   // calls the calss that the user has selected. 
-  IDuelable getDuelable(String name) {
+  static IDuelable getDuelable(String name) {
     switch(name) {
       case HAWK:
        return new Hawk();

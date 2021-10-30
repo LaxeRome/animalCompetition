@@ -1,15 +1,15 @@
 package Animals;
 
-import Environments.*;
-
 public class Elephant implements IDuelable {
   
   public String name() {
-    return "bear";
+    return "elephant";
   }
   
-  public int speed() {
-    return 25;
+  public int speed(int friction, int gravity, int terrain, int waterdebuff) {
+    int strength = 18;
+    int weight = 515;
+    return strength * friction * 25 - weight * gravity;
   }
 
   public double defense() {

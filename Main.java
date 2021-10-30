@@ -7,7 +7,7 @@ import Animals.*;
 import Environments.*;
 
 public class Main implements ActionListener {
-  static Environment currentEnvironment;
+  private static Environment currentEnvironment;
   private static JLabel label, label2, success1, success2;
   private static JFrame frame;
   private static JPanel panel, game;
@@ -86,18 +86,6 @@ public class Main implements ActionListener {
     success2.setBounds(280, 50, 300, 25);
     panel.add(success2);
 
-    currentEnvironment = getEnvironment();
-
-    JLabel environmentLabel = new JLabel("The current environment is " + currentEnvironment.environment() + "!!!");
-    environmentLabel.setFont(new Font(null, Font.BOLD, 22));
-    environmentLabel.setBounds(150,200,500,40);
-    if(currentEnvironment.environment().equals("desert")) {
-      environmentLabel.setForeground(new Color(225,220,177));
-    } else if(currentEnvironment.environment().equals("beach")) {
-      environmentLabel.setForeground(new Color (95, 170, 215));
-    }
-    panel.add(environmentLabel);
-
     frame.setVisible(true);
   }
   
@@ -135,7 +123,9 @@ public class Main implements ActionListener {
       IDuelable secondPlayer = getDuelable(user2);
 
       // calls the duel method in the fight class.
-      int winner = Fight.duel(firstPlayer, secondPlayer, new Desert());
+      currentEnvironment = getEnvironment();
+      
+      int winner = Fight.duel(firstPlayer, secondPlayer, currentEnvironment);
       panel.setVisible(false);
       game = new JPanel();
       game.setLayout(null);
@@ -171,7 +161,7 @@ public class Main implements ActionListener {
   static final String HYENA = "hyena";
   static final String BULL = "bull";
   static final String ELEPHANT = "elephant";
-  // calls the calss that the user has selected. 
+  // instantiates the class that the user has selected. 
   static IDuelable getDuelable(String name) {
     switch(name) {
       case HAWK:

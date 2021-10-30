@@ -1,6 +1,7 @@
 package Environments;
 
 import java.util.*;
+import java.awt.*;
   
 
 // current date, current hour 
@@ -10,6 +11,14 @@ public abstract class Environment {
     EVENING,
     NIGHT
   }
+
+  public abstract int friction();
+
+  public abstract int gravity(); 
+
+  public abstract int terrain();
+
+  public abstract int waterdebuff();
 
   public abstract String environment();
   

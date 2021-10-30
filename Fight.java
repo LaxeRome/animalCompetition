@@ -14,7 +14,8 @@ public class Fight {
       // both of the animals variables are the same for now.
       while(fighting) {
         // Snake attacks first 
-        int random1 = (int)(Math.random() * currentEnvironment.adjustedSpeed(one.speed()));
+        int random1 = (int)(Math.random() * one.speed(currentEnvironment.friction(), currentEnvironment.gravity(), currentEnvironment.terrain(), currentEnvironment.waterdebuff()));
+        System.out.println(one.speed(currentEnvironment.friction(), currentEnvironment.gravity(), currentEnvironment.terrain(), currentEnvironment.waterdebuff()));
         
         if(random1 > 0) {
           // stamina is decreased based on the opposing animals attack attribute, and the defending animals defense attribute.
@@ -27,7 +28,8 @@ public class Fight {
           return 2;
         }
         // Hawk attacks.
-        int random2 = (int)(Math.random() * two.speed());
+        int random2 = (int)(Math.random() * two.speed(currentEnvironment.friction(), currentEnvironment.gravity(), currentEnvironment.terrain(), currentEnvironment.waterdebuff()));
+        System.out.println(two.speed(currentEnvironment.friction(), currentEnvironment.gravity(), currentEnvironment.terrain(), currentEnvironment.waterdebuff()));
         if(random2 > 0) {
           stamina2 -= one.attack() * two.defense();
           System.out.println("Stamina 2: " + stamina2);

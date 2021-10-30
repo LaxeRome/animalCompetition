@@ -1,9 +1,39 @@
 package Environments;
 
-public class Desert extends Environment {
+import java.awt.*;
+
+public class Desert extends Environment implements IDisplayable {
+
+  public Color ForegroundColor() {
+    return Color.white;
+  }
+
+  public Color BackgroundColor() {
+    return Color.yellow;
+  }
+
+  public Font setFont() {
+    return new Font(null, Font.BOLD, 20);
+  }
 
   public String environment() {
     return "desert";
+  }
+  
+  public int friction() {
+    return 7;
+  }
+
+  public int gravity() {
+    return 6;
+  }
+
+  public int terrain() {
+    return 1;
+  }
+
+  public int waterdebuff() {
+    return 25;
   }
 
   public int adjustedSpeed(String animal, int animalSpeed) {

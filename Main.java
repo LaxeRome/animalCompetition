@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,8 +9,8 @@ public class Main implements ActionListener {
   private static Environment currentEnvironment;
   private static JLabel label, label2, success1, success2;
   private static JFrame frame;
-  private static JPanel panel, game;
-  private static JButton button, button2;
+  private static JPanel panel;
+  private static JButton button;
   private static JTextField userText, secondAnimal;
   private static String user, user2;
   public static String[] animals = {
@@ -59,7 +58,7 @@ public class Main implements ActionListener {
     secondAnimal.setBackground(Color.gray);
     secondAnimal.setBounds(80, 50, 165, 25);
     panel.add(secondAnimal);
-    
+
     button = new JButton("Submit");
     button.setBounds(10, 80, 100, 25);
     button.addActionListener(new Main());
@@ -88,16 +87,15 @@ public class Main implements ActionListener {
 
     frame.setVisible(true);
   }
-  
-  @Override
+
   public void actionPerformed(ActionEvent e) {
-    if(e.getSource()== button) {
+    if (e.getSource() == button) {
       submitAnimals();
-    } 
+    }
   }
 
   public static void submitAnimals() {
-    user = userText.getText(); 
+    user = userText.getText();
     user2 = secondAnimal.getText();
     success1.setForeground(Color.lightGray);
     success2.setForeground(Color.lightGray);
@@ -118,38 +116,15 @@ public class Main implements ActionListener {
     // if true, it will hide the panel, and create a new panel that shows the results of the
     // duel. It will then allow the user to play again if they click the "Back" button.
     if (firstInput && secondInput) {
+      panel.setVisible(false);
+      frame.dispose();
       // Make the animals
       IDuelable firstPlayer = getDuelable(user);
       IDuelable secondPlayer = getDuelable(user2);
-
       // calls the duel method in the fight class.
       currentEnvironment = getEnvironment();
-      
+
       int winner = Fight.duel(firstPlayer, secondPlayer, currentEnvironment);
-      panel.setVisible(false);
-      game = new JPanel();
-      game.setLayout(null);
-      frame.add(game);
-
-      JLabel victory = new JLabel();
-      victory.setBounds(100,100,350,40);
-      victory.setFont(new Font(null, Font.BOLD, 20));
-      
-      switch(winner) {
-        case 1:
-         victory.setText("Player 1 has won!");
-         break;
-        case 2: 
-         victory.setText("Player 2 has won!");
-         break;
-      }
-      game.add(victory);
-
-      button2 = new JButton("Back");
-      button2.setBounds(200, 200, 75, 25);
-      button2.addActionListener(new Replay());
-      game.add(button2);
-      game.setVisible(true);
     }
   }
 
@@ -163,37 +138,37 @@ public class Main implements ActionListener {
   static final String ELEPHANT = "elephant";
   // instantiates the class that the user has selected. 
   static IDuelable getDuelable(String name) {
-    switch(name) {
-      case HAWK:
-       return new Hawk();
-      case SNAKE: 
-       return new Snake();
-      case BEAR:
-       return new Bear();
-      case CROCODILE: 
-       return new Crocodile();
-      case LION:  
-       return new Lion();
-      case HYENA: 
-       return new Hyena();
-      case BULL: 
-       return new Bull();
-      case ELEPHANT:
-       return new Elephant();
-      default: 
-       return null;
+    switch (name) {
+    case HAWK:
+      return new Hawk();
+    case SNAKE:
+      return new Snake();
+    case BEAR:
+      return new Bear();
+    case CROCODILE:
+      return new Crocodile();
+    case LION:
+      return new Lion();
+    case HYENA:
+      return new Hyena();
+    case BULL:
+      return new Bull();
+    case ELEPHANT:
+      return new Elephant();
+    default:
+      return null;
     }
   }
-// selects a random environment for the user to play in. 
+  // selects a random environment for the user to play in. 
   static Environment getEnvironment() {
     int random = (int)(Math.random() * 2);
-    switch(random) {
-      case 0:
-       return new Desert();
-      case 1:
-       return new Beach();
-      default:
-       return null;
+    switch (random) {
+    case 0:
+      return new Desert();
+    case 1:
+      return new Beach();
+    default:
+      return null;
     }
   }
 

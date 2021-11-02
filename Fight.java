@@ -81,7 +81,7 @@ public class Fight implements ActionListener {
           animalHealth1.setValue(health1);
           animalHealth1.setString(health1+"/"+10000+" HP");
           if(animalHealth1.getValue() > 0) {
-            health2 -= attack2(one, two, currentEnvironment);
+            health2 -= attack1(two, one, currentEnvironment);
             animalHealth2.setValue(health2);
             animalHealth2.setString(health2+"/"+10000+" HP");
             if(animalHealth2.getValue() <= 0) {

@@ -21,6 +21,6 @@ public class Bear implements IDuelable {
   }
 
   public double stamina() {
-    return 1000;
+    return 10000;
   }
 }

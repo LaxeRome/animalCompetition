@@ -8,7 +8,7 @@ import Environments.*;
 public class Main implements ActionListener {
   private static Environment currentEnvironment;
   private static JLabel label, label2, success1, success2;
-  private static JFrame frame;
+  public static JFrame frame;
   private static JPanel panel;
   private static JButton button;
   private static JTextField userText, secondAnimal;
@@ -124,7 +124,7 @@ public class Main implements ActionListener {
       // calls the duel method in the fight class.
       currentEnvironment = getEnvironment();
 
-      int winner = Fight.duel(firstPlayer, secondPlayer, currentEnvironment);
+      Fight.duel(firstPlayer, secondPlayer, currentEnvironment);
     }
   }
 

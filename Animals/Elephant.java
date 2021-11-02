@@ -21,6 +21,6 @@ public class Elephant implements IDuelable {
   }
 
   public double stamina() {
-    return 1000;
+    return 10000;
   }
 }

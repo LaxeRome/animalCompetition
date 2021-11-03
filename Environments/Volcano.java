@@ -2,18 +2,18 @@ package Environments;
 
 import java.awt.*;
 
-public class Desert extends Environment {
+public class Volcano extends Environment implements IDisplayable {
 
   public Color ForegroundColor() {
-    return new Color(203, 163, 40);
+    return new Color(221, 164, 72);
   }
 
   public Color BackgroundColor() {
-    return new Color(243, 227, 124);
+    return new Color(187, 52, 47);
   }
 
   public String environment() {
-    return "desert";
+    return "volcano";
   }
   
   public int friction() {

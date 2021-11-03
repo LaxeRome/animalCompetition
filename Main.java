@@ -181,12 +181,14 @@ public class Main implements ActionListener {
   }
   // selects a random environment for the user to play in. 
   static Environment getEnvironment() {
-    int random = (int)(Math.random() * 2);
+    int random = (int)(Math.random() * 3);
     switch (random) {
     case 0:
       return new Desert();
     case 1:
       return new Beach();
+    case 2:
+      return new Volcano();
     default:
       return null;
     }

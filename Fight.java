@@ -15,7 +15,7 @@ public class Fight implements ActionListener {
   // the returned integer returns the value of the player that won. So if 1 is returned
   // player 1 has won. If 2 has returned player 2 has won.
   public static void duel(IDuelable one, IDuelable two, Environment currentEnvironment) {
-    IDisplayable colourScheme = getColourScheme(currentEnvironment.environment());
+    IDisplayable colourScheme = currentEnvironment;
     System.out.println(currentEnvironment.environment());
     game = new JPanel();
     game.setBackground(colourScheme.BackgroundColor());
@@ -91,13 +91,13 @@ public class Fight implements ActionListener {
             animalHealth2.setString(health2+"/"+10000+" HP");
             if(animalHealth2.getValue() <= 0) {
               animalHealth2.setString(0+"/"+10000+" HP");
-              winner.setText("The Winner Is: " + one.name());
+              winner.setText("The winner is " + one.name());
               ((Timer)(buttons.getSource())).stop();
             }
           } else {
             animalHealth1.setString(0+"/"+10000+" HP");
             ((Timer)(buttons.getSource())).stop();
-            winner.setText("The Winner Is: " + two.name());
+            winner.setText("The winner is " + two.name());
           }
         } 
       }
@@ -124,17 +124,6 @@ public class Fight implements ActionListener {
       animalHealth2.setValue(10000);
       animalHealth2.setString("10000/10000 HP");
       timer.start();
-    }
-  }
-
-  static IDisplayable getColourScheme(String environment) {
-    switch(environment) {
-      case "beach":
-        return new Beach();
-      case "desert":
-        return new Desert();
-      default:
-        return null;
     }
   }
 

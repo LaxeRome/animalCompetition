@@ -2,7 +2,7 @@ package Environments;
 
 import java.awt.*;
 
-public class Beach extends Environment implements IDisplayable { 
+public class Beach extends Environment { 
 
   public Color ForegroundColor() {
     return new Color(203, 163, 40);
@@ -10,10 +10,6 @@ public class Beach extends Environment implements IDisplayable {
 
   public Color BackgroundColor() {
     return new Color(30,93,135);
-  }
-
-  public Font setFont() {
-    return new Font(null, Font.BOLD, 20);
   }
 
   public String environment() {

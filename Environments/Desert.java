@@ -5,11 +5,11 @@ import java.awt.*;
 public class Desert extends Environment implements IDisplayable {
 
   public Color ForegroundColor() {
-    return Color.white;
+    return new Color(203, 163, 40);
   }
 
   public Color BackgroundColor() {
-    return Color.yellow;
+    return new Color(243, 227, 124);
   }
 
   public Font setFont() {

@@ -5,11 +5,11 @@ import java.awt.*;
 public class Beach extends Environment implements IDisplayable { 
 
   public Color ForegroundColor() {
-    return Color.white;
+    return new Color(203, 163, 40);
   }
 
   public Color BackgroundColor() {
-    return Color.blue;
+    return new Color(30,93,135);
   }
 
   public Font setFont() {

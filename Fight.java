@@ -9,13 +9,16 @@ import java.awt.event.*;
 public class Fight implements ActionListener {
   private static JFrame frame;
   private static JButton exitButton, backButton, rematchButton;
+  private static JPanel game;
   private static JProgressBar animalHealth1, animalHealth2;
   private static Timer timer;
   // the returned integer returns the value of the player that won. So if 1 is returned
   // player 1 has won. If 2 has returned player 2 has won.
   public static void duel(IDuelable one, IDuelable two, Environment currentEnvironment) {
+    IDisplayable colourScheme = getColourScheme(currentEnvironment.environment());
     System.out.println(currentEnvironment.environment());
-    JPanel game = new JPanel();
+    game = new JPanel();
+    game.setBackground(colourScheme.BackgroundColor());
     game.setLayout(null);
     frame = new JFrame();
     frame.setSize(700, 300);
@@ -30,6 +33,7 @@ public class Fight implements ActionListener {
     animalHealth1.setStringPainted(true);
 
     JLabel animalOne = new JLabel(one.name().toUpperCase());
+    animalOne.setForeground(colourScheme.ForegroundColor());
     animalOne.setBounds(515,10,85,40);
     animalOne.setFont(new Font(null, Font.BOLD, 20));
 
@@ -41,10 +45,12 @@ public class Fight implements ActionListener {
     animalHealth2.setStringPainted(true);
 
     JLabel animalTwo = new JLabel(two.name().toUpperCase());
+    animalTwo.setForeground(colourScheme.ForegroundColor());
     animalTwo.setBounds(515,100,85,40);
     animalTwo.setFont(new Font(null, Font.BOLD, 20));
 
     JLabel winner = new JLabel();
+    winner.setForeground(colourScheme.ForegroundColor());
     winner.setBounds(10,200,400,100);
     winner.setFont(new Font(null, Font.BOLD, 30));
 
@@ -60,7 +66,6 @@ public class Fight implements ActionListener {
     rematchButton.setBounds(595, 175, 95, 25);
     rematchButton.addActionListener(new Fight());
 
-
     game.add(animalHealth1);
     game.add(animalOne);
     game.add(animalHealth2);
@@ -71,27 +76,27 @@ public class Fight implements ActionListener {
     game.add(rematchButton);
 
     frame.setVisible(true);
-    int delay = 100;
+    int delay = 50;
     ActionListener taskPerformer = new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent buttons) {
         int health1 = animalHealth1.getValue();
         int health2 = animalHealth2.getValue();
         if (animalHealth1.getValue() > 0 && animalHealth2.getValue() > 0) {
-          health1 -= attack1(one, two, currentEnvironment);
+          health1 -= attack(one, two, currentEnvironment);
           animalHealth1.setValue(health1);
           animalHealth1.setString(health1+"/"+10000+" HP");
           if(animalHealth1.getValue() > 0) {
-            health2 -= attack1(two, one, currentEnvironment);
+            health2 -= attack(two, one, currentEnvironment);
             animalHealth2.setValue(health2);
             animalHealth2.setString(health2+"/"+10000+" HP");
             if(animalHealth2.getValue() <= 0) {
               animalHealth2.setString(0+"/"+10000+" HP");
               winner.setText("The Winner Is: " + one.name());
-              ((Timer)(e.getSource())).stop();
+              ((Timer)(buttons.getSource())).stop();
             }
           } else {
             animalHealth1.setString(0+"/"+10000+" HP");
-            ((Timer)(e.getSource())).stop();
+            ((Timer)(buttons.getSource())).stop();
             winner.setText("The Winner Is: " + two.name());
           }
         } 
@@ -104,15 +109,16 @@ public class Fight implements ActionListener {
     }
   }
 
-  public void actionPerformed(ActionEvent e) {
-    if(e.getSource() == backButton) {
+  public void actionPerformed(ActionEvent buttons) {
+    if(buttons.getSource() == backButton) {
+      game.setVisible(false);
       frame.dispose();
       Main.GUI();
     }
-    if (e.getSource() == exitButton) {
+    if(buttons.getSource() == exitButton) {
       System.exit(0);
     }
-    if(e.getSource() == rematchButton) {
+    if(buttons.getSource() == rematchButton) {
       animalHealth1.setValue(10000);
       animalHealth1.setString("10000/10000 HP");
       animalHealth2.setValue(10000);
@@ -121,23 +127,24 @@ public class Fight implements ActionListener {
     }
   }
 
-  public static double attack1(IDuelable one, IDuelable two, Environment currentEnvironment) {
+  static IDisplayable getColourScheme(String environment) {
+    switch(environment) {
+      case "beach":
+        return new Beach();
+      case "desert":
+        return new Desert();
+      default:
+        return null;
+    }
+  }
+
+  public static double attack(IDuelable one, IDuelable two, Environment currentEnvironment) {
     double damage = 0;
     int random = (int)(Math.random() * one.speed(currentEnvironment.friction(), currentEnvironment.gravity(), currentEnvironment.terrain(), currentEnvironment.waterdebuff()));
     if (random > 0) {
         // stamina is decreased based on the opposing animals attack attribute, and the defending animals defense attribute.
         damage = two.attack() * one.defense();
       }
-    return damage;
-  }
-
-  public static double attack2(IDuelable one, IDuelable two, Environment currentEnvironment) {
-    double damage = 0;
-    int random = (int)(Math.random() * two.speed(currentEnvironment.friction(), currentEnvironment.gravity(), currentEnvironment.terrain(), currentEnvironment.waterdebuff()));
-    if (random > 0) {
-        // stamina is decreased based on the opposing animals attack attribute, and the defending animals defense attribute.
-      damage = one.attack() * two.defense();
-    }
     return damage;
   }
 }

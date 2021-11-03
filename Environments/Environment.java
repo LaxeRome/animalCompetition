@@ -1,21 +1,26 @@
 package Environments;
 
 import java.util.*;
+import java.awt.*;
   
 
 // current date, current hour 
-public abstract class Environment { 
+public abstract class Environment implements IDisplayable { 
   public enum timeOfDay {
     MORNING,
     EVENING,
     NIGHT
   }
 
+  public abstract int friction();
+
+  public abstract int gravity(); 
+
+  public abstract int terrain();
+
+  public abstract int waterdebuff();
+
   public abstract String environment();
-  
-  public abstract int adjustedSpeed(String animal, int animalSpeed);
-  
-  public abstract double adjustedDefense(String animal, double animalDefense);
 
   public static timeOfDay time() {
     Date time = new Date();

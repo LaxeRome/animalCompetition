@@ -1,15 +1,15 @@
 package Animals;
 
-import Environments.*;
-
 public class Snake implements IDuelable {
 
   public String name() {
-    return "lion";
+    return "snake";
   }
 
-  public int speed() {
-    return 4;
+  public int speed(int friction, int gravity, int terrain, int waterdebuff) {
+    int strength = 2;
+    int weight = 9;
+    return strength * friction * 4 - weight * gravity;
   }
   
   public double defense() {
@@ -21,6 +21,6 @@ public class Snake implements IDuelable {
   }
 
   public double stamina() {
-    return 1000;
+    return 10000;
   }
 }

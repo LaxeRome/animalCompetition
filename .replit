@@ -1,2 +1,2 @@
 language = "java10"
-run = "javac Main.java; java Main; popd"
+run = "javac Windows/Main.java; java Main; popd"

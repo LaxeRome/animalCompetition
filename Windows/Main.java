@@ -1,3 +1,5 @@
+package Windows;
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -115,7 +117,7 @@ public class Main implements ActionListener {
   }
 
   public static void selectAnimal() {
-              user = userText.getText();
+    user = userText.getText();
     user2 = secondAnimal.getText();
     success1.setForeground(Color.lightGray);
     success2.setForeground(Color.lightGray);
@@ -143,7 +145,6 @@ public class Main implements ActionListener {
       IDuelable secondPlayer = getDuelable(user2);
       // calls the duel method in the fight class.
       currentEnvironment = getEnvironment();
-
       Fight.duel(firstPlayer, secondPlayer, currentEnvironment);
     }
   }

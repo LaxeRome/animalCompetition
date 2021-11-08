@@ -1,3 +1,5 @@
+package Windows;
+
 import Animals.*;
 import Environments.*;
 import javax.swing.*;

@@ -2,6 +2,7 @@ package Windows;
 
 import java.awt.*;
 import javax.swing.*;
+import java.util.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Animals.*;
@@ -9,12 +10,19 @@ import Environments.*;
 
 public class Main implements ActionListener {
   private static Environment currentEnvironment;
-  private static JLabel label, label2, success1, success2;
+  private static JLabel player1;
+  private static JLabel player2;
+  private static JLabel success1;
+  private static JLabel success2;
   public static JFrame frame;
-  private static JPanel panel;
-  private static JButton submitButton, helpButton, exitButton;
-  private static JTextField userText, secondAnimal;
-  private static String user, user2;
+  private static JPanel menu;
+  private static JButton submitButton;
+  private static JButton helpButton; 
+  private static JButton exitButton;
+  private static JTextField firstAnimal;
+  private static JTextField secondAnimal;
+  private static String user;
+  private static String user2;
   public static String[] animals = {
     "snake",
     "hawk",
@@ -23,58 +31,59 @@ public class Main implements ActionListener {
     "lion",
     "crocodile",
     "hyena",
-    "elephant"
+    "elephant",
+    "custom"
   };
   // Creates the main window for the user to input the animals.
   public static void GUI() {
     frame = new JFrame();
     frame.setSize(750, 300);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    panel = new JPanel();
-    panel.setLayout(null);
-    panel.setBackground(new Color(29, 30, 24));
-    panel.setOpaque(true);
+    menu = new JPanel();
+    menu.setLayout(null);
+    menu.setBackground(new Color(29, 30, 24));
+    menu.setOpaque(true);
 
-    frame.add(panel);
+    frame.add(menu);
 
-    label = new JLabel("Player 1:");
-    label.setBounds(10, 20, 80, 25);
-    label.setForeground(new Color(107, 143, 113));
-    label.setFont(new Font(null, Font.BOLD, 13));
-    panel.add(label);
+    player1 = new JLabel("Player 1:");
+    player1.setBounds(10, 20, 80, 25);
+    player1.setForeground(new Color(107, 143, 113));
+    player1.setFont(new Font(null, Font.BOLD, 13));
+    menu.add(player1);
 
-    userText = new JTextField();
-    userText.setForeground(new Color(29, 30, 24));
-    userText.setBackground(new Color(170, 210, 186));
-    userText.setBounds(80, 20, 165, 25);
-    panel.add(userText);
+    firstAnimal = new JTextField();
+    firstAnimal.setForeground(new Color(29, 30, 24));
+    firstAnimal.setBackground(new Color(170, 210, 186));
+    firstAnimal.setBounds(80, 20, 165, 25);
+    menu.add(firstAnimal);
 
-    label2 = new JLabel("Player 2:");
-    label2.setForeground(new Color(107, 143, 113));
-    label2.setFont(new Font(null, Font.BOLD, 13));
-    label2.setBounds(10, 50, 80, 25);
-    panel.add(label2);
+    player2 = new JLabel("Player 2:");
+    player2.setForeground(new Color(107, 143, 113));
+    player2.setFont(new Font(null, Font.BOLD, 13));
+    player2.setBounds(10, 50, 80, 25);
+    menu.add(player2);
 
     secondAnimal = new JTextField();
     secondAnimal.setForeground(new Color(29, 30, 24));
     secondAnimal.setBackground(new Color(170, 210, 186));
     secondAnimal.setBounds(80, 50, 165, 25);
-    panel.add(secondAnimal);
+    menu.add(secondAnimal);
 
     submitButton = new JButton("Submit");
     submitButton.setBounds(10, 110, 100, 25);
     submitButton.addActionListener(new Main());
-    panel.add(submitButton);
+    menu.add(submitButton);
 
     helpButton = new JButton("Help");
     helpButton.setBounds(10,230,100,25);
     helpButton.addActionListener(new Main());
-    panel.add(helpButton);
+    menu.add(helpButton);
 
     exitButton = new JButton("Exit");
     exitButton.setBounds(670,235,70,25);
     exitButton.addActionListener(new Main());
-    panel.add(exitButton);
+    menu.add(exitButton);
 
     // prints out all the animals that the user is able to select.
     String options = "Your choices include: ";
@@ -87,16 +96,16 @@ public class Main implements ActionListener {
     }
     success1 = new JLabel();
     success1.setBounds(280, 20, 300, 25);
-    panel.add(success1);
+    menu.add(success1);
 
     JLabel choices = new JLabel(options);
     choices.setForeground(new Color(185, 245, 216));
     choices.setBounds(10, 80, 700, 25);
-    panel.add(choices);
+    menu.add(choices);
 
     success2 = new JLabel();
     success2.setBounds(280, 50, 300, 25);
-    panel.add(success2);
+    menu.add(success2);
 
     frame.setVisible(true);
   }
@@ -106,7 +115,7 @@ public class Main implements ActionListener {
       selectAnimal();
       }
       if(buttons.getSource() == helpButton) {
-        panel.setVisible(false);
+        menu.setVisible(false);
         frame.dispose();
         Help.helpWindow();
       }
@@ -117,7 +126,7 @@ public class Main implements ActionListener {
   }
 
   public static void selectAnimal() {
-    user = userText.getText();
+    user = firstAnimal.getText();
     user2 = secondAnimal.getText();
     success1.setForeground(Color.lightGray);
     success2.setForeground(Color.lightGray);
@@ -134,17 +143,18 @@ public class Main implements ActionListener {
         success2.setText("correct animal");
         secondInput = true;
       }
-    }
-    // if true, it will hide the panel, and create a new panel that shows the results of the
+    } 
+    // if true, it will hide the menu, and create a new panel that shows the results of the
     // duel. It will then allow the user to play again if they click the "Back" button.
     if (firstInput && secondInput) {
-      panel.setVisible(false);
+      menu.setVisible(false);
       frame.dispose();
       // Make the animals
       IDuelable firstPlayer = getDuelable(user);
       IDuelable secondPlayer = getDuelable(user2);
       // calls the duel method in the fight class.
       currentEnvironment = getEnvironment();
+      System.out.println(firstPlayer.name() + secondPlayer.name() + currentEnvironment.environment());
       Fight.duel(firstPlayer, secondPlayer, currentEnvironment);
     }
   }
@@ -177,8 +187,35 @@ public class Main implements ActionListener {
     case ELEPHANT:
       return new Elephant();
     default:
-      return null;
-    }
+      return createCustomAnimal();
+  }
+  }
+  
+  public static Custom createCustomAnimal() {
+    Custom custom = new Custom();
+    Scanner sin = new Scanner(System.in);
+        System.out.print("Name: ");
+        String name = sin.nextLine();
+        custom.setName(name);
+
+        System.out.print("Input Speed, Strength, Weight: ");
+        int speed = sin.nextInt();
+        int strength = sin.nextInt();
+        int weight = sin.nextInt();
+        custom.setSpeed(speed, strength, weight);
+
+        System.out.print("Defense: ");
+        double defense = sin.nextDouble();
+        custom.setDefense(defense);
+
+        System.out.print("Attack: ");
+        double attack = sin.nextDouble();
+        custom.setAttack(attack);
+
+        System.out.print("Stamina: ");
+        int stamina = sin.nextInt();
+        custom.setStamina(stamina);
+        return custom;
   }
   // selects a random environment for the user to play in. 
   static Environment getEnvironment() {

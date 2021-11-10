@@ -27,28 +27,28 @@ public class Fight implements ActionListener {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.add(game);
 
-    animalHealth1 = new JProgressBar(0, 10000);
+    animalHealth1 = new JProgressBar(0, (int)one.stamina());
     animalHealth1.setForeground(Color.red);
     animalHealth1.setBackground(Color.darkGray);
     animalHealth1.setBounds(10, 10, 500, 40);
-    animalHealth1.setValue(10000);
+    animalHealth1.setValue((int)one.stamina());
     animalHealth1.setStringPainted(true);
 
     JLabel animalOne = new JLabel(one.name().toUpperCase());
     animalOne.setForeground(colourScheme.ForegroundColor());
-    animalOne.setBounds(515,10,85,40);
+    animalOne.setBounds(515,10,150,40);
     animalOne.setFont(new Font(null, Font.BOLD, 20));
 
-    animalHealth2 = new JProgressBar(0, 10000);
+    animalHealth2 = new JProgressBar(0, (int)two.stamina());
     animalHealth2.setForeground(Color.red);
     animalHealth2.setBackground(Color.darkGray);
     animalHealth2.setBounds(10,100,500,40);
-    animalHealth2.setValue(10000);
+    animalHealth2.setValue((int)two.stamina());
     animalHealth2.setStringPainted(true);
 
     JLabel animalTwo = new JLabel(two.name().toUpperCase());
     animalTwo.setForeground(colourScheme.ForegroundColor());
-    animalTwo.setBounds(515,100,85,40);
+    animalTwo.setBounds(515,100,150,40);
     animalTwo.setFont(new Font(null, Font.BOLD, 20));
 
     JLabel winner = new JLabel();
@@ -85,19 +85,21 @@ public class Fight implements ActionListener {
         int health2 = animalHealth2.getValue();
         if (animalHealth1.getValue() > 0 && animalHealth2.getValue() > 0) {
           health1 -= attack(one, two, currentEnvironment);
+          System.out.println(health1);
           animalHealth1.setValue(health1);
-          animalHealth1.setString(health1+"/"+10000+" HP");
+          animalHealth1.setString(health1+"/"+(int)one.stamina() +" HP");
           if(animalHealth1.getValue() > 0) {
+            System.out.println(health1);
             health2 -= attack(two, one, currentEnvironment);
             animalHealth2.setValue(health2);
-            animalHealth2.setString(health2+"/"+10000+" HP");
+            animalHealth2.setString(health2+"/"+(int)two.stamina()+" HP");
             if(animalHealth2.getValue() <= 0) {
-              animalHealth2.setString(0+"/"+10000+" HP");
+              animalHealth2.setString(0+"/"+(int)two.stamina()+" HP");
               winner.setText("The winner is " + one.name());
               ((Timer)(buttons.getSource())).stop();
             }
           } else {
-            animalHealth1.setString(0+"/"+10000+" HP");
+            animalHealth1.setString(0+"/"+(int)one.stamina()+" HP");
             ((Timer)(buttons.getSource())).stop();
             winner.setText("The winner is " + two.name());
           }
@@ -121,10 +123,8 @@ public class Fight implements ActionListener {
       System.exit(0);
     }
     if(buttons.getSource() == rematchButton) {
-      animalHealth1.setValue(10000);
-      animalHealth1.setString("10000/10000 HP");
-      animalHealth2.setValue(10000);
-      animalHealth2.setString("10000/10000 HP");
+      animalHealth1.setValue(animalHealth1.getMaximum());
+      animalHealth2.setValue(animalHealth2.getMaximum());
       timer.start();
     }
   }
@@ -132,9 +132,11 @@ public class Fight implements ActionListener {
   public static double attack(IDuelable one, IDuelable two, Environment currentEnvironment) {
     double damage = 0;
     int random = (int)(Math.random() * one.speed(currentEnvironment.friction(), currentEnvironment.gravity(), currentEnvironment.terrain(), currentEnvironment.waterdebuff()));
+    System.out.println(one.name() + ": " + random);
     if (random > 0) {
         // stamina is decreased based on the opposing animals attack attribute, and the defending animals defense attribute.
         damage = two.attack() * one.defense();
+        System.out.println("Attack successful.");
       }
     return damage;
   }

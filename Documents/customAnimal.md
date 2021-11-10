@@ -8,7 +8,7 @@
 
 ### Where To Configure:
 
-The first thing you need to know is all configurations of the animal are done in console.
+The first thing you need to know is all configurations of the animal are done in the console.
 
   
 
@@ -28,22 +28,24 @@ Animal: dragon
 Thirdly, what you need to do is input the speed of the animal, the strength of the animal, and the weight of the animal all on one line separated by a space. For example,
 
 ```console
-Input speed, strength, weight: 4 17 160
+Input speed, strength, weight: 6 16 111
 ```
 
-if you want to find out how to increase or decrease speed, please refer to speedAlgorithm.md
+if you want to find out how to increase or decrease speed, please refer to speedAlgorithm.md  
+  
+If your speed value is less than or equal to one, then the health bar will appear to be stuck at full.
 
 ### Setting Up Defense:
 
-Once you have the speed finished you now have to configure the defensive stats of the custom animal. This part is pretty simple. If you want your animal to take no damage, you set the defense to 0. If you want your animal to take normal amount of damage, set the defense value to 1. If you want the animal to take more damage, have the defensive value be greater than 1.
-
+Once you have the speed finished you now have to configure the defensive stats of the custom animal. This part is pretty simple. If you want your animal to take no damage, you set the defense to 0. If you want your animal to take normal amount of damage, set the defense value to 1. If you want the animal to take more damage, have the defensive value be greater than 1.  
 For example,
 
 ```console
 Defense: 0.75
 ```
+Since the defense is less than 1, the overall damage taken is reduced by 0.75x (more durable). If it were over 1, then damage taken would be increased by (whatever number). (Less durable) 
 ### Setting Up Attack:
-Setting up the attack value is very simple. The user can input any number they wish, as attack is the real damage that you do to other animals.
+Setting up the attack value is very simple. The user can input any number they wish, as attack is the real damage that you do to other animals. For example, 100 attack does less damage than 150 attack.
 ```console
 Attack: 150
 ```

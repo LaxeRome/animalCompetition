@@ -31,16 +31,4 @@ public class Beach extends Environment {
   public int waterdebuff() {
     return 1;
   }
-
-  public int adjustedSpeed(String animal, int animalSpeed) {
-    int newSpeed = animalSpeed;
-
-    return newSpeed;
-  }
-  // this environment has a big bonus to almost every 
-  // animals defense.
-  public double adjustedDefense(String animal, double animalDefense) {
-    double newDefense = animalDefense;
-    return newDefense;
-  }
 }

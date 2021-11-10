@@ -17,7 +17,7 @@ public class Snake implements IDuelable {
   }
 
   public double attack() {
-    return 200;
+    return 150;
   }
 
   public double stamina() {

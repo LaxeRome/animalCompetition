@@ -24,7 +24,7 @@ W = Weight.
 G = Gravity. 
 
 ### Some Clarification:
-So you may be wondering how this equation works. Well I can tell you. For the speed, the lower the new speed, the greater the chance the animal has to avoid an attack. The new speed has to be greater, or equal to two otherwise the animal will avoid every single attack.  
+If you want to make the animal get hit less, then you would increase the weight of the animal. With this you have to be extra careful though, because the animal will dodge every attack **unless the difference between the negatives and the positives is greater than two**.  
     
   The equation is made on a pretty simple idea. The Strength, friction, and current speed are all negative effects that increase your speed. If you want to have a better or worse speed, then you should change the strength, or the current speed of the animal. The friction cannot be changed as it is part of the current environment you are fighting in.  
     

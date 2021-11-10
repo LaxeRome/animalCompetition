@@ -1,5 +1,5 @@
 package Animals;
-import java.util.*;
+
 public class Custom implements IDuelable {
   public Custom() {
     System.out.println("Warning!");
@@ -15,7 +15,10 @@ public class Custom implements IDuelable {
   private double defense;
   private double attack;
   private int stamina;
-  private Scanner sin = new Scanner(System.in);
+  /* This class uses getters and setters so that the user can set the value of
+  *  their custom animal, and then later on the algorithm can get the value
+  *  during the duel.
+  */
   public void setName(String name) {
     this.name = name;
   }
@@ -31,6 +34,7 @@ public class Custom implements IDuelable {
   }
 
   public void setAttack(double attack) {
+    System.out.println();
     this.attack = attack;
   }
 
@@ -43,7 +47,7 @@ public class Custom implements IDuelable {
   }
 
   public int speed(int friction, int gravity, int terrain, int waterdebuff) {
-    return (this.strength * friction *  - this.weight * gravity) * terrain;
+    return this.strength * friction * this.speed - this.weight * gravity;
   }
 
   public double defense() {

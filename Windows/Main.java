@@ -143,33 +143,7 @@ public class Main implements ActionListener {
         success2.setText("correct animal");
         secondInput = true;
       }
-    }
-    if(user.equalsIgnoreCase("custom") || user2.equalsIgnoreCase("custom")) {
-        Custom customAnimal = new Custom();
-        Scanner sin = new Scanner(System.in);
-        
-        System.out.print("Name: ");
-        String name = sin.nextLine();
-        customAnimal.setName(name);
-
-        System.out.print("Input Speed, Strength, Weight: ");
-        int speed = sin.nextInt();
-        int strength = sin.nextInt();
-        int weight = sin.nextInt();
-        customAnimal.setSpeed(speed, strength, weight);
-
-        System.out.print("Defense: ");
-        double defense = sin.nextDouble();
-        customAnimal.setDefense(defense);
-
-        System.out.print("Attack: ");
-        double attack = sin.nextDouble();
-        customAnimal.setAttack(attack);
-
-        System.out.print("Stamina: ");
-        int stamina = sin.nextInt();
-        customAnimal.setStamina(stamina);
-      } 
+    } 
     // if true, it will hide the menu, and create a new panel that shows the results of the
     // duel. It will then allow the user to play again if they click the "Back" button.
     if (firstInput && secondInput) {
@@ -213,8 +187,35 @@ public class Main implements ActionListener {
     case ELEPHANT:
       return new Elephant();
     default:
-      return new Custom();
-    }
+      return createCustomAnimal();
+  }
+  }
+  
+  public static Custom createCustomAnimal() {
+    Custom custom = new Custom();
+    Scanner sin = new Scanner(System.in);
+        System.out.print("Name: ");
+        String name = sin.nextLine();
+        custom.setName(name);
+
+        System.out.print("Input Speed, Strength, Weight: ");
+        int speed = sin.nextInt();
+        int strength = sin.nextInt();
+        int weight = sin.nextInt();
+        custom.setSpeed(speed, strength, weight);
+
+        System.out.print("Defense: ");
+        double defense = sin.nextDouble();
+        custom.setDefense(defense);
+
+        System.out.print("Attack: ");
+        double attack = sin.nextDouble();
+        custom.setAttack(attack);
+
+        System.out.print("Stamina: ");
+        int stamina = sin.nextInt();
+        custom.setStamina(stamina);
+        return custom;
   }
   // selects a random environment for the user to play in. 
   static Environment getEnvironment() {

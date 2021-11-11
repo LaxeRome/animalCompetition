@@ -2,14 +2,14 @@ package Environments;
 
 import java.awt.*;
 
-public class Beach extends Environment { 
+public class Beach extends Environment {
 
   public Color ForegroundColor() {
     return new Color(203, 163, 40);
   }
 
   public Color BackgroundColor() {
-    return new Color(30,93,135);
+    return new Color(30, 93, 135);
   }
 
   public String environment() {

@@ -1,13 +1,6 @@
 package Animals;
 
 public class Custom implements IDuelable {
-  public Custom() {
-    System.out.println("Warning!");
-    System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-    System.out.println("To develop an understanding of how to create a custom animal,");
-    System.out.println("you need to read the Documents folder in order to create a functioning custom animal.");
-    System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-  }
   private String name;
   private int speed;
   private int strength;
@@ -15,10 +8,20 @@ public class Custom implements IDuelable {
   private double defense;
   private double attack;
   private int stamina;
-  /* This class uses getters and setters so that the user can set the value of
-  *  their custom animal, and then later on the algorithm can get the value
-  *  during the duel.
-  */
+
+  public Custom() {
+    System.out.println("Warning!");
+    System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+    System.out.println("To develop an understanding of how to create a custom animal,");
+    System.out.println("you need to read the Documents folder in order to create a functioning custom animal.");
+    System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+  }
+
+  /*
+   * This class uses getters and setters so that the user can set the value of
+   * their custom animal, and then later on the algorithm can get the value during
+   * the duel.
+   */
   public void setName(String name) {
     this.name = name;
   }
@@ -34,7 +37,6 @@ public class Custom implements IDuelable {
   }
 
   public void setAttack(double attack) {
-    System.out.println();
     this.attack = attack;
   }
 

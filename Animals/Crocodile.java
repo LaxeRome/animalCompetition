@@ -11,15 +11,15 @@ public class Crocodile implements IDuelable {
     int weight = 102;
     return waterdebuff * (strength * friction * 4 - weight * gravity);
   }
-  
+
   public double defense() {
     return 0.8;
   }
- 
+
   public double attack() {
     return 100;
   }
-     
+
   public double stamina() {
     return 10000;
   }

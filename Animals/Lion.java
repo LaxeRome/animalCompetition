@@ -11,7 +11,7 @@ public class Lion implements IDuelable {
     int weight = 111;
     return strength * friction * 6 - weight * gravity;
   }
-  
+
   public double defense() {
     return 1;
   }

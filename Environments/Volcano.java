@@ -2,7 +2,7 @@ package Environments;
 
 import java.awt.*;
 
-public class Volcano extends Environment implements IDisplayable {
+public class Volcano extends Environment {
 
   public Color ForegroundColor() {
     return new Color(221, 164, 72);
@@ -15,7 +15,7 @@ public class Volcano extends Environment implements IDisplayable {
   public String environment() {
     return "volcano";
   }
-  
+
   public int friction() {
     return 7;
   }

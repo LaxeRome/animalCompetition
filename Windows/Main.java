@@ -17,23 +17,31 @@ public class Main implements ActionListener {
   public static JFrame frame;
   private static JPanel menu;
   private static JButton submitButton;
-  private static JButton helpButton; 
+  private static JButton helpButton;
   private static JButton exitButton;
   private static JTextField firstAnimal;
   private static JTextField secondAnimal;
   private static String user;
   private static String user2;
   public static String[] animals = {
-    "snake",
-    "hawk",
-    "bull",
-    "bear",
-    "lion",
-    "crocodile",
-    "hyena",
+    "snake", 
+    "hawk", 
+    "bull", 
+    "bear", 
+    "lion", 
+    "crocodile", 
+    "hyena", 
     "elephant",
-    "custom"
-  };
+    "custom" };
+  static final String HAWK = "hawk";
+  static final String SNAKE = "snake";
+  static final String BEAR = "bear";
+  static final String CROCODILE = "crocodile";
+  static final String LION = "lion";
+  static final String HYENA = "hyena";
+  static final String BULL = "bull";
+  static final String ELEPHANT = "elephant";
+
   // Creates the main window for the user to input the animals.
   public static void GUI() {
     frame = new JFrame();
@@ -76,12 +84,12 @@ public class Main implements ActionListener {
     menu.add(submitButton);
 
     helpButton = new JButton("Help");
-    helpButton.setBounds(10,230,100,25);
+    helpButton.setBounds(10, 230, 100, 25);
     helpButton.addActionListener(new Main());
     menu.add(helpButton);
 
     exitButton = new JButton("Exit");
-    exitButton.setBounds(670,235,70,25);
+    exitButton.setBounds(670, 235, 70, 25);
     exitButton.addActionListener(new Main());
     menu.add(exitButton);
 
@@ -111,17 +119,20 @@ public class Main implements ActionListener {
   }
 
   public void actionPerformed(ActionEvent buttons) {
+    // When clicked, the button calls the submitAnimal method.
     if (buttons.getSource() == submitButton) {
       selectAnimal();
-      }
-      if(buttons.getSource() == helpButton) {
-        menu.setVisible(false);
-        frame.dispose();
-        Help.helpWindow();
-      }
-      if(buttons.getSource() == exitButton) {
-        System.exit(0);
-      }
+    }
+    // when clicked, the button opens the help menu.
+    if (buttons.getSource() == helpButton) {
+      menu.setVisible(false);
+      frame.dispose();
+      Help.helpWindow();
+    }
+    // when clicked, the button exits the program.
+    if (buttons.getSource() == exitButton) {
+      System.exit(0);
+    }
 
   }
 
@@ -132,8 +143,7 @@ public class Main implements ActionListener {
     success2.setForeground(Color.lightGray);
     boolean firstInput = false;
     boolean secondInput = false;
-    // This for loop goes through the animals array to check if the animals input were 
-    // valid.
+    // Checks the input to verify that it was correct.
     for (int j = 0; j < animals.length; j++) {
       if (user.equalsIgnoreCase(animals[j])) {
         success1.setText("correct animal");
@@ -143,95 +153,90 @@ public class Main implements ActionListener {
         success2.setText("correct animal");
         secondInput = true;
       }
-    } 
-    // if true, it will hide the menu, and create a new panel that shows the results of the
-    // duel. It will then allow the user to play again if they click the "Back" button.
+    }
+    /* Once the animals have been selected, the next step of the program is to 
+    *  display the fight window. This if statement checks that if both of the inputs
+    *  are correct animals, then the program will create an environment, and call the
+    *  duel method inside of the Fight class.
+    */
     if (firstInput && secondInput) {
       menu.setVisible(false);
       frame.dispose();
-      // Make the animals
       IDuelable firstPlayer = getDuelable(user);
       IDuelable secondPlayer = getDuelable(user2);
-      // calls the duel method in the fight class.
       currentEnvironment = getEnvironment();
-      System.out.println(firstPlayer.name() + secondPlayer.name() + currentEnvironment.environment());
       Fight.duel(firstPlayer, secondPlayer, currentEnvironment);
     }
   }
 
-  static final String HAWK = "hawk";
-  static final String SNAKE = "snake";
-  static final String BEAR = "bear";
-  static final String CROCODILE = "crocodile";
-  static final String LION = "lion";
-  static final String HYENA = "hyena";
-  static final String BULL = "bull";
-  static final String ELEPHANT = "elephant";
-  // instantiates the class that the user has selected. 
+  /* instantiates the class that the user has selected, and sets it to
+  *  IDuelable variable.
+  */
   static IDuelable getDuelable(String name) {
     switch (name) {
-    case HAWK:
-      return new Hawk();
-    case SNAKE:
-      return new Snake();
-    case BEAR:
-      return new Bear();
-    case CROCODILE:
-      return new Crocodile();
-    case LION:
-      return new Lion();
-    case HYENA:
-      return new Hyena();
-    case BULL:
-      return new Bull();
-    case ELEPHANT:
-      return new Elephant();
-    default:
-      return createCustomAnimal();
+      case HAWK:
+        return new Hawk();
+      case SNAKE:
+        return new Snake();
+      case BEAR:
+        return new Bear();
+      case CROCODILE:
+        return new Crocodile();
+      case LION:
+        return new Lion();
+      case HYENA:
+        return new Hyena();
+      case BULL:
+        return new Bull();
+      case ELEPHANT:
+        return new Elephant();
+      default:
+        return createCustomAnimal();
+    }
   }
-  }
-  
+  // creates a custom animal by instantiating the Custom.java class.
   public static Custom createCustomAnimal() {
     Custom custom = new Custom();
     Scanner sin = new Scanner(System.in);
-        System.out.print("Name: ");
-        String name = sin.nextLine();
-        custom.setName(name);
+    System.out.print("Name: ");
+    String name = sin.nextLine();
+    custom.setName(name);
 
-        System.out.print("Input Speed, Strength, Weight: ");
-        int speed = sin.nextInt();
-        int strength = sin.nextInt();
-        int weight = sin.nextInt();
-        custom.setSpeed(speed, strength, weight);
+    System.out.print("Input Speed, Strength, Weight: ");
+    int speed = sin.nextInt();
+    int strength = sin.nextInt();
+    int weight = sin.nextInt();
+    custom.setSpeed(speed, strength, weight);
 
-        System.out.print("Defense: ");
-        double defense = sin.nextDouble();
-        custom.setDefense(defense);
+    System.out.print("Defense: ");
+    double defense = sin.nextDouble();
+    custom.setDefense(defense);
 
-        System.out.print("Attack: ");
-        double attack = sin.nextDouble();
-        custom.setAttack(attack);
+    System.out.print("Attack: ");
+    double attack = sin.nextDouble();
+    custom.setAttack(attack);
 
-        System.out.print("Stamina: ");
-        int stamina = sin.nextInt();
-        custom.setStamina(stamina);
-        return custom;
+    System.out.print("Stamina: ");
+    int stamina = sin.nextInt();
+    custom.setStamina(stamina);
+    return custom;
   }
-  // selects a random environment for the user to play in. 
+
+  // selects a random environment for the animals to fight in.
   static Environment getEnvironment() {
-    int random = (int)(Math.random() * 3);
+    int random = (int) (Math.random() * 3);
     switch (random) {
-    case 0:
-      return new Desert();
-    case 1:
-      return new Beach();
-    case 2:
-      return new Volcano();
-    default:
-      return null;
+      case 0:
+        return new Desert();
+      case 1:
+        return new Beach();
+      case 2:
+        return new Volcano();
+      default:
+        return null;
     }
   }
-
+  // calls to the GUI method.
   public static void main(String[] args) {
     GUI();
   }

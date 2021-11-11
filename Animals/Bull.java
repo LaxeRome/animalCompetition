@@ -11,7 +11,7 @@ public class Bull implements IDuelable {
     int weight = 500;
     return strength * friction * 15 - weight * gravity;
   }
-  
+
   public double defense() {
     return 1;
   }

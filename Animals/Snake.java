@@ -11,7 +11,7 @@ public class Snake implements IDuelable {
     int weight = 9;
     return strength * friction * 4 - weight * gravity;
   }
-  
+
   public double defense() {
     return 1.5;
   }

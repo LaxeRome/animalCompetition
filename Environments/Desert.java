@@ -15,7 +15,7 @@ public class Desert extends Environment {
   public String environment() {
     return "desert";
   }
-  
+
   public int friction() {
     return 7;
   }

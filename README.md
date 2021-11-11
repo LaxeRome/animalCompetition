@@ -7,7 +7,7 @@ With the adjusted attributes of the animals, they start to fight each other. Eve
 ### Choosing An Animal
 So you may be wondering, how do I play this game? Well, I am here to help! To start the game, all you need to do is input two animals into the two provided text fields. Make sure when you are inputting your chosen animals that they are valid options. If you look below the text fields, you can see all the options you can choose between.  
   
-  While looking at the choices, you might have noticed a special animal called "custom". For more information about this animal, I would recommend looking at the customAnimal.md document.
+  While looking at the choices, you might have noticed a special animal called "custom". For more information about this animal, I would recommend looking at the [customAnimal.md](https://github.com/LaxeRome/animalCompetition/blob/main/Documents/customAnimal.md) document.
   ### Gameplay
   Once you have successfully chosen your animals, a new frame will open. On this frame you will two health bars. You can tell which health bar is which by looking to the right of them. If one of the animals reaches 0 HP then the duel stops, and a winner is declared at the bottom of the screen.   
     

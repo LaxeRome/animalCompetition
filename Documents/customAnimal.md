@@ -31,7 +31,7 @@ Thirdly, what you need to do is input the speed of the animal, the strength of t
 Input speed, strength, weight: 6 16 111
 ```
 
-if you want to find out how to increase or decrease speed, please refer to speedAlgorithm.md  
+if you want to find out how to increase or decrease speed, please refer to [speedAlgorithm.md](https://github.com/LaxeRome/animalCompetition/blob/main/Documents/speedAlgorithm.md)  
   
 If your speed value is less than or equal to one, then the health bar will appear to be stuck at full.
 
